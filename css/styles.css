@@ -253,12 +253,30 @@ button, input, textarea {
 .btn-primary {
     background: var(--gradient-1);
     color: #fff;
-    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+    opacity: 0;
+    z-index: -1;
+    transition: var(--transition);
+    border-radius: inherit;
+}
+
+.btn-primary:hover::before {
+    opacity: 1;
 }
 
 .btn-primary:hover {
-    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
-    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.6), 0 0 40px rgba(254, 9, 121, 0.4);
+    transform: translateY(-3px) scale(1.02);
 }
 
 .btn-outline {
@@ -554,39 +572,30 @@ button, input, textarea {
     color: var(--highlight);
 }
 
-.skills-data {
-    margin-bottom: 1.5rem;
-}
-
-.skills-data:last-child {
-    margin-bottom: 0;
-}
-
-.skills-titles {
+.skills-tags {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
-.skills-name {
+.skill-tag {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.6rem 1.2rem;
+    border-radius: 2rem;
+    font-size: var(--small-font);
     font-weight: var(--font-medium);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+    cursor: default;
 }
 
-.skills-bar, .skills-percentage {
-    height: 8px;
-    border-radius: .5rem;
-}
-
-.skills-bar {
-    background-color: rgba(255, 255, 255, 0.1);
-    width: 100%;
-}
-
-.skills-percentage {
-    display: block;
-    background: var(--gradient-1);
-    box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
-    border-radius: .5rem;
+.skill-tag:hover {
+    background: rgba(0, 242, 254, 0.1);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+    transform: translateY(-3px);
 }
 
 /* 
