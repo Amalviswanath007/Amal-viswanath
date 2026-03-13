@@ -4,8 +4,17 @@
 ==============================================
 */
 
+// --- Preloader Cache Check ---
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        setTimeout(() => {
+            preloader.classList.add('loaded');
+        }, 800);
+    }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
-    
     // --- Navigation Toggle (Mobile) ---
     const navMenu = document.querySelector('.nav-menu');
     const navToggle = document.getElementById('nav-toggle');
@@ -97,11 +106,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const appearOnScroll = new IntersectionObserver(function(entries, observer) {
         entries.forEach(entry => {
             if (!entry.isIntersecting) {
-                return;
+                entry.target.classList.remove('appear');
             } else {
                 entry.target.classList.add('appear');
-                // Optional: Stop observing once appeared for one-time animation
-                // observer.unobserve(entry.target); 
             }
         });
     }, appearOptions);
